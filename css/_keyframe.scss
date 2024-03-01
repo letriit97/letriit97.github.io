@@ -1,0 +1,38 @@
+// Xoay vòng
+@keyframes avatarRotage {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Nhảy Bounce
+@keyframes markerBounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+// sáng xung quanh
+@keyframes glow {
+    50% {
+        box-shadow: 0 0 40px hsl(12, 100%, 60%);
+    }
+}
+// animation: glow 2 infinite alternate;

@@ -1,0 +1,318 @@
+@import "./reset";
+@import "./variable";
+@import "./mixins";
+@import "./keyframe";
+
+body {
+    font-size: 18px;
+    line-height: 32px;
+    background-color: $overcast-color;
+}
+
+#person-cv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $ocean-color;
+
+
+    .container {
+        width: 900px !important;
+        // background-color: $seafoam-color;
+        background-color: mintcream;
+        margin: 20px 0;
+        // margin: 15px auto;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    }
+
+    .header {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        // margin-bottom: 10px;
+        border-bottom: 2px solid $mist-color;
+        background-color: mintcream;
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 50%;
+            // border: 1px solid;
+
+            position: relative;
+            overflow: hidden;
+
+            // &::before {
+            //     content: "";
+            //     background: linear-gradient(315deg, $stone-color, $ocean-color);
+            //     width: 50%;
+            //     height: 120%;
+            //     position: absolute;
+            //     animation: avatarRotage 1.5s linear infinite;
+            // }
+
+            // &::after {
+            //     content: "";
+            //     position: absolute;
+            //     inset: 5px;
+            //     border-radius: 50%;
+            //     background: $seafoam-color;
+            //     z-index: 1;
+            // }
+
+            &-box {
+                position: absolute;
+                inset: 0;
+                border: 3px solid $ocean-color;
+                z-index: 3;
+                border-radius: 50%;
+                overflow: hidden;
+
+                img {
+                    // width: 145px;
+                    // height: 145px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transition: 0.5s;
+                    pointer-events: none;
+
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .user-information {
+            padding: 10px 15px;
+            // font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 400;
+
+            .fullname {
+                // font-size: 3rem;
+                font-weight: bold;
+                font-style: normal;
+                text-transform: uppercase;
+                color: $ocean-color;
+            }
+
+            .position {
+                text-transform: capitalize;
+                color: $ocean-color;
+            }
+
+            .description {
+                .row {
+                    .desc-item {
+                        display: flex;
+
+                        .box-icon {
+                            display: flex;
+
+                            i {
+                                display: flex;
+                                justify-content: start;
+                                align-items: flex-start;
+
+                                // font-size: 18px;
+                                color: $ocean-color;
+                                margin-right: 10px;
+                                margin-top: 5px;
+                            }
+
+                        }
+
+                        &-content {
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 500;
+                            text-transform: capitalize;
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+
+
+
+    .content {
+        &-left {
+
+            .user-skill,
+            .user-language,
+            .education,
+            .projects {
+                margin: 20px 0;
+
+                &-title {
+                    @include GenTitle();
+
+                    i {
+                        margin-right: 10px;
+                    }
+
+                    // &:hover {
+                    //     @include GenTitleHover;
+                    // }
+                }
+
+                &-list {
+                    list-style-type: circle;
+                    margin-left: 30px;
+                    margin-top: 0px;
+                    font-style: italic;
+                }
+
+                &-many {
+                    list-style-type: none;
+                    margin-left: 10px;
+                    margin-top: 10px;
+                    font-style: italic;
+                    text-transform: capitalize;
+
+                    &-item {
+                        font-size: 18px;
+                        margin-bottom: 15px;
+
+                        &-time {
+                            text-align: left;
+                        }
+
+                        &-school {
+                            text-align: right;
+                        }
+                    }
+                }
+
+                &-item {
+                    font-size: 18px;
+                    line-height: 40px;
+
+                    &::marker {
+                        color: $autumn-color;
+
+                        &::before {
+                            animation: markerBounce 1s ease-in-out infinite;
+                        }
+
+                        &::after {
+                            position: absolute;
+                            left: -20px;
+                            opacity: 0.5;
+                        }
+                    }
+
+                    a {
+                        color: $ocean-color;
+                        text-decoration: none;
+                        display: inline-block;
+                        text-transform: capitalize;
+                        position: relative;
+                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+
+                        &:before,
+                        &:after {
+                            position: absolute;
+                            content: '';
+                            border-bottom: 1px solid $deep-aqua-color;
+                            border-radius: 1em;
+                            bottom: .3em;
+                            transition: transform .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+                        }
+
+                        &:before {
+                            width: 1em;
+                            transform-origin: left;
+                        }
+
+                        &:after {
+                            width: 100%;
+                            left: 1em;
+                            transform: translateX(100%);
+                        }
+
+                        &:hover:before {
+                            transform: scaleX(0.3);
+                        }
+
+                        &:hover:after {
+                            transform: translateX(0);
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        &-right {
+            margin-top: 20px;
+
+            .module {
+                margin-bottom: 20px;
+
+                &-title {
+                    @include GenTitle();
+
+                    i {
+                        margin-right: 10px;
+                    }
+
+                    // &:hover {
+                    //     @include GenTitleHover;
+                    // }
+                }
+
+                &-descriptions {
+                    padding-left: 20px;
+                    font-size: 18px;
+                    font-style: italic;
+
+                    .item {
+                        margin: 20px auto;
+
+                        &-time {
+                            text-align: right;
+                            margin-right: 15px;
+                            border-bottom: 1px solid $flower-color;
+                            color: $sky-color;
+                            font-weight: 600;
+                        }
+
+                        &-experient {
+                            font-style: italic;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #person-cv {
+        .header {
+            .user-information {
+                .fullname {
+                    text-align: center;
+                }
+
+                .position {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@mixin GenTitle($color: $deep-aqua-color) {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: capitalize;
+    // color: $color;
+    // background-color: $flower-color;
+
+    color: $flower-color;
+    background-color: $color;
+
+    border-radius: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
