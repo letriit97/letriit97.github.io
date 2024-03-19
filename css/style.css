@@ -150,32 +150,32 @@ table {
 }
 @keyframes glow {
   50% {
-    box-shadow: 0 0 40px hsl(12, 100%, 60%);
+    box-shadow: 0 0 40px #ff5c33;
   }
 }
 body {
   font-size: 18px;
   line-height: 32px;
   background-color: #f1f1f2;
+  font-family: "Arima", system-ui;
 }
 
 #person-cv {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #07575b;
+  color: #001f3f;
 }
 #person-cv .container {
   width: 900px !important;
-  background-color: mintcream;
   margin: 20px 0;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: #ffffff;
+  box-shadow: 21px 21px 54px #c7c7c7, -21px -21px 54px #ffffff;
 }
 #person-cv .header {
   padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: 2px solid #90AFC5;
-  background-color: mintcream;
 }
 #person-cv .header .avatar {
   width: 150px;
@@ -215,11 +215,9 @@ body {
   font-weight: bold;
   font-style: normal;
   text-transform: uppercase;
-  color: #07575b;
 }
 #person-cv .header .user-information .position {
   text-transform: capitalize;
-  color: #07575b;
 }
 #person-cv .header .user-information .description .row .desc-item {
   display: flex;
@@ -231,14 +229,13 @@ body {
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  color: #07575b;
   margin-right: 10px;
   margin-top: 5px;
 }
 #person-cv .header .user-information .description .row .desc-item-content {
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: capitalize;
 }
 #person-cv .content-left .user-skill,
@@ -251,11 +248,10 @@ body {
 #person-cv .content-left .user-language-title,
 #person-cv .content-left .education-title,
 #person-cv .content-left .projects-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: capitalize;
-  color: #FFBB00;
-  background-color: #003b46;
+  color: #003b46;
   border-radius: 10px;
   padding-left: 10px;
   cursor: pointer;
@@ -390,11 +386,10 @@ body {
   margin-bottom: 20px;
 }
 #person-cv .content-right .module-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: capitalize;
-  color: #FFBB00;
-  background-color: #003b46;
+  color: #003b46;
   border-radius: 10px;
   padding-left: 10px;
   cursor: pointer;

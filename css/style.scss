@@ -7,22 +7,41 @@ body {
     font-size: 18px;
     line-height: 32px;
     background-color: $overcast-color;
+    // font-family: Muli,sans-serif;
+    font-family: "Arima", system-ui;
+    
+    // font-family: "Adamina", serif;
+    
 }
 
 #person-cv {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $ocean-color;
+    color: $text-color;
 
 
     .container {
         width: 900px !important;
         // background-color: $seafoam-color;
-        background-color: mintcream;
+
+
         margin: 20px 0;
         // margin: 15px auto;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        // box-shadow:
+        // 9.5px 10.2px 6.6px rgba(0, 0, 0, 0.037),
+        // 18px 19.4px 15.3px rgba(0, 0, 0, 0.053),
+        // 25.5px 27.4px 28.7px rgba(0, 0, 0, 0.067),
+        // 33px 35.4px 53.2px rgba(0, 0, 0, 0.083),
+        // 68px 73px 123px rgba(0, 0, 0, 0.12)
+
+        background: #ffffff;
+        box-shadow: 21px 21px 54px #c7c7c7,
+            -21px -21px 54px #ffffff;
+
+
+
 
     }
 
@@ -31,7 +50,7 @@ body {
         padding-bottom: 15px;
         // margin-bottom: 10px;
         border-bottom: 2px solid $mist-color;
-        background-color: mintcream;
+        // background-color: $overcast-color;
 
         .avatar {
             width: 150px;
@@ -101,12 +120,12 @@ body {
                 font-weight: bold;
                 font-style: normal;
                 text-transform: uppercase;
-                color: $ocean-color;
+                // color: $ocean-color;
             }
 
             .position {
                 text-transform: capitalize;
-                color: $ocean-color;
+                // color: $ocean-color;
             }
 
             .description {
@@ -123,7 +142,7 @@ body {
                                 align-items: flex-start;
 
                                 // font-size: 18px;
-                                color: $ocean-color;
+                                // color: $ocean-color;
                                 margin-right: 10px;
                                 margin-top: 5px;
                             }
@@ -133,7 +152,7 @@ body {
                         &-content {
                             font-size: 18px;
                             font-style: normal;
-                            font-weight: 500;
+                            font-weight: 400;
                             text-transform: capitalize;
                         }
                     }
