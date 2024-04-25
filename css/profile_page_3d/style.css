@@ -27,6 +27,7 @@ body {
   min-height: 100vh;
   background: var(--bg-color);
   color: var(--text-color);
+  overflow: hidden;
 }
 
 .title {
@@ -123,6 +124,7 @@ body {
   width: 66rem;
   height: 45rem;
   padding: 2rem;
+  animation: show-animation 2s forwards;
 }
 .wrapper .cover {
   position: absolute;
@@ -138,6 +140,10 @@ body {
 }
 .wrapper .cover.cover-left {
   z-index: -1;
+}
+.wrapper .cover.cover-right {
+  z-index: 100;
+  transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .wrapper .cover.cover-right.turn {
   transform: rotateY(180deg);
@@ -157,6 +163,9 @@ body {
   box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
   display: flex;
   padding: 2rem;
+}
+.wrapper .book-page.page-left {
+  box-shadow: -0.6rem 0.6rem 0.6rem rgba(0, 0, 0, 0.1);
 }
 .wrapper .book-page.page-left .profile-page {
   display: flex;
@@ -388,6 +397,17 @@ body {
 }
 .wrapper .book-page.page-right .contact-box .btn {
   cursor: pointer;
+}
+
+@keyframes show-animation {
+  0%, 30% {
+    opacity: 0;
+    transform: rotate(-20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

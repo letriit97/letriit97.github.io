@@ -47,6 +47,33 @@ contactMessage.onclick = () => {
     })
 }
 
+// Show animation
+const coverRight = document.querySelector('.cover.cover-right');
+const pageLeft = document.querySelector('.book-page.page-left');
+setTimeout(() => {
+    coverRight.classList.add('turn');
+}, 2100);
+
+setTimeout(() => {
+    coverRight.style.zIndex = -1;
+}, 2800);
+
+setTimeout(() => {
+    pageLeft.style.zIndex = 20;
+}, 3200);
+
+pages.forEach((_, index) => {
+    setTimeout(() => {
+        revergePageIndex();
+        pages[pageNumber].classList.remove('turn');
+
+        setTimeout(() => {
+            revergePageIndex();
+            pages[pageNumber].style.zIndex = 10 + index;
+        }, 500)
+    }, (index + 1) * 200 + 2100);
+})
+
 
 
 
