@@ -1,203 +1,788 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Developer Ben - Lê Minh Trí</title>
+    <title>Lê Minh Trí - Fullstack Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.2/css/all.min.css" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/Portfolio/style.css">
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent-dotnet: #512bd4;
+            --accent-cyan: #4ec9b0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* --- CONTAINER BASE --- */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- HEADER (RESPONSIVE FLEXBOX) --- */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(13, 17, 23, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-dotnet);
+        }
+
+        /* Nav Right bao gồm Menu và Nút dịch */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* --- LANGUAGE SWITCHER BUTTONS --- */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            background: #21262d;
+            padding: 4px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-dotnet);
+            color: #fff;
+        }
+
+        /* --- HERO SECTION (FLEXBOX) --- */
+        .hero {
+            padding: 60px 0;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-avatar {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 250px;
+        }
+
+        .hero-avatar img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-dotnet);
+            object-fit: cover;
+            box-shadow: 0 0 25px rgba(81, 43, 212, 0.25);
+        }
+
+        .hero-content {
+            flex: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .social-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-social {
+            padding: 10px 18px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-social:hover {
+            background-color: var(--border-color);
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        /* --- SECTION COMMONS --- */
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section h2 {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        section h2 i {
+            color: var(--accent-dotnet);
+        }
+
+        /* --- ABOUT & CONTACT INFO (GRIDBOX) --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .about-box,
+        .hobbies-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            border-radius: 8px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --- SKILLS GRID (AUTO-FIT GRIDBOX) --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px 10px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 4px 12px rgba(78, 201, 176, 0.1);
+        }
+
+        .skill-card i {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .skill-card.dotnet i {
+            color: #512bd4;
+        }
+
+        .skill-card.frontend i {
+            color: #61dafb;
+        }
+
+        .skill-card.db i {
+            color: #f29111;
+        }
+
+        .skill-card.tools i {
+            color: #f05032;
+        }
+
+        /* --- NUGET PACKAGES --- */
+        .nuget-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .nuget-card {
+            background-color: rgba(81, 43, 212, 0.05);
+            border: 1px dashed var(--accent-dotnet);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .nuget-card h4 {
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nuget-card h4 i {
+            color: #f29111;
+        }
+
+        .nuget-link {
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .nuget-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- WORK EXPERIENCE --- */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .exp-item {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .exp-title h3 {
+            color: #fff;
+            font-size: 1.25rem;
+        }
+
+        .exp-title .company {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .exp-time {
+            background-color: rgba(81, 43, 212, 0.15);
+            color: #9b7cf8;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .exp-body p {
+            font-size: 0.95rem;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .exp-body ul {
+            padding-left: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .exp-body li {
+            margin-bottom: 6px;
+            color: #b3bac1;
+        }
+
+        .tech-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tech-badge {
+            background-color: #21262d;
+            border: 1px solid var(--border-color);
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-main);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+
+            .info-grid,
+            .nuget-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                text-align: center;
+            }
+
+            .social-tags {
+                justify-content: center;
+            }
+
+            .exp-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Header  -->
-
-    <header class="header">
-        <a href="" class="logo">
-            <span class="nickname">Developer Ben </span>
-            <span class="small-name"> (Lê Minh Trí )</span>
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="#introduce">Giới thiệu</a></li>
-            <li><a href="#experience"> Kinh nghiệm </a></li>
-            <li><a href="#projects"> Dự án </a></li>
-            <li><a href="#contact"> liên hệ </a></li>
-        </ul>
-
-        <i class="fas fa-bars" id="menu-icon"></i>
-
-        <button class="visit-btn">Xem tại Github</button>
+    <header>
+        <div class="nav-container container">
+            <div class="logo">TRI.LE<span>_FULLSTACK</span></div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="#about" data-i18n="nav_about">Giới thiệu</a></li>
+                    <li><a href="#packages" data-i18n="nav_packages">Thư viện</a></li>
+                    <li><a href="#skills" data-i18n="nav_skills">Kỹ năng</a></li>
+                    <li><a href="#experience" data-i18n="nav_exp">Kinh nghiệm</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="switchLang('vi')">VI</button>
+                    <button class="lang-btn" onclick="switchLang('en')">EN</button>
+                </div>
+            </div>
+        </div>
     </header>
-    <!-- End Header -->
 
-    <!-- Introduce -->
-    <div class="introduce" id="introduce">
-        <div class="introduce-container">
-            <img
-                src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fHww">
+    <div class="container">
 
-            <div class="info-box">
-                <div class="text">
-                    <h3>Xin chào. Tôi tên là</h3>
-                    <h1>Lê Minh Trí</h1>
-                    <span>Junior Developer</span>
-                </div>
-
-                <div class="btn-group">
-                    <div class="btn">
-                        Tải xuống CV
-                    </div>
-                    <div class="btn">
-                        Liên hệ
-                    </div>
-                </div>
-
-                <div class="socials">
-                    <i class="fab fa-facebook-square"></i>
-                    <i class="fas fa-mail-bulk"></i>
-                    <i class="fas fa-phone"></i>
+        <section class="hero">
+            <div class="hero-avatar">
+                <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=500" alt="Lê Minh Trí">
+            </div>
+            <div class="hero-content">
+                <h1>Lê Minh Trí</h1>
+                <div class="subtitle" data-i18n="hero_sub">Fullstack Developer</div>
+                <p class="tagline" id="hero-tagline" data-i18n="hero_tagline">
+                </p>
+                <div class="social-tags">
+                    <a href="mailto:Imtri1908@gmail.com" class="btn-social"><i class="fas fa-envelope"></i>
+                        Imtri1908@gmail.com</a>
+                    <a href="tel:0346390511" class="btn-social"><i class="fas fa-phone"></i> 0346390511</a>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="about" class="info-grid">
+            <div class="about-box">
+                <h2 id="title-goal"><i class="fas fa-user-code"></i> </h2>
+                <div id="content-goal" data-i18n="goal_content"></div>
+            </div>
+
+            <div class="hobbies-box">
+                <h2 id="title-info"><i class="fas fa-address-card"></i> </h2>
+                <div class="contact-list">
+                    <div class="contact-item"><i class="fas fa-calendar-alt"></i><span data-i18n="info_dob">Ngày sinh:
+                            19/08/1997</span></div>
+                    <div class="contact-item"><i class="fas fa-user"></i><span data-i18n="info_gender">Giới tính:
+                            Nam</span></div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span data-i18n="info_loc">Phú Thọ,
+                            Thủ Dầu Một, Bình Dương</span></div>
+                    <div class="contact-item"><i class="fas fa-graduation-cap"></i><span data-i18n="info_edu">CĐ Công
+                            nghệ TP.HCM (IT - 2018)</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 id="title-skills"><i class="fas fa-cubes"></i> </h2>
+            <div class="skills-grid">
+                <div class="skill-card dotnet"><i class="fab fa-windows"></i><strong>.NET Core / MVC</strong></div>
+                <div class="skill-card dotnet"><i class="fas fa-network-wired"></i><strong>Web API / RESTful</strong>
+                </div>
+                <div class="skill-card frontend"><i class="fab fa-angular"></i><strong>Angular / JS / TS</strong></div>
+                <div class="skill-card frontend"><i class="fab fa-react"></i><strong>React JS / Redux</strong></div>
+                <div class="skill-card db"><i class="fas fa-database"></i><strong>SQL Server / MySQL</strong></div>
+                <div class="skill-card tools"><i class="fab fa-git-alt"></i><strong>Git / Git Flow</strong></div>
+            </div>
+        </section>
+
+        <section id="packages">
+            <h2 id="title-packages"><i class="fas fa-box-open"></i> </h2>
+            <p id="sub-packages" style="color: var(--text-muted); margin-bottom: 15px;"></p>
+            <div class="nuget-container">
+                <div class="nuget-card">
+                    <div>
+                        <h4><i class="fas fa-cube"></i> Technical Utilities</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="nuget_1_desc">Bộ công cụ tích
+                            hợp các hàm xử lý logic kỹ thuật hệ thống.</p>
+                    </div>
+                    <a href="https://www.nuget.org/packages/Technical%20Utilities" target="_blank" class="nuget-link"
+                        data-i18n="nuget_view">Xem trên nuget.org →</a>
+                </div>
+                <div class="nuget-card">
+                    <div>
+                        <h4><i class="fas fa-exchange-alt"></i> Technical Utilities.Convert</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);" data-i18n="nuget_2_desc">Thư viện chuyên
+                            dụng hỗ trợ chuyển đổi dữ liệu hiệu năng cao cho ứng dụng C#.</p>
+                    </div>
+                    <a href="https://www.nuget.org/packages/Technical%20Utilities.Convert" target="_blank"
+                        class="nuget-link" data-i18n="nuget_view">Xem trên nuget.org →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 id="title-exp"><i class="fas fa-briefcase"></i> </h2>
+            <div class="experience-list" id="exp-list-container">
+            </div>
+        </section>
+
     </div>
-    <!-- End Introduce -->
 
-    <!-- Experience -->
-    <section class="experience" id="experience">
-        <h2 class="title">Kinh nghiệm làm việc</h2>
-        <div class="experience-info">
-            <div class="grid">
-                <div class="grid-card">
-                    <i class="fas fa-desktop icon"></i>
-                    <span class="job-position">Frontend Developer</span>
-                    <h3 class="work-time"> <span><i class="fas fa-hourglass-half"></i></span> 1 năm</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam suscipit vitae recusandae sit temporibus hic. Aperiam error
-                        praesentium incidunt cupiditate iusto, soluta quidem, et accusamus necessitatibus, officiis odit voluptatibus fugit.</p>
-                </div>
-                <div class="grid-card">
-                    <i class="fas fa-code icon"></i>
-                    <span class="job-position">Backend Developer</span>
-                    <h3 class="work-time"><span><i class="fas fa-hourglass-half"></i></span>1 năm</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam suscipit vitae recusandae sit temporibus hic. Aperiam error
-                        praesentium incidunt cupiditate iusto, soluta quidem, et accusamus necessitatibus, officiis odit voluptatibus fugit.</p>
-                </div>
-                <div class="grid-card">
-                    <i class="fab fa-github-square icon"></i>
-                    <span class="job-position">Git</span>
-                    <h3 class="work-time"><span><i class="fas fa-hourglass-half"></i></span>1 năm</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam suscipit vitae recusandae sit temporibus hic. Aperiam error
-                        praesentium incidunt cupiditate iusto, soluta quidem, et accusamus necessitatibus, officiis odit voluptatibus fugit.</p>
-                </div>
-                <div class="grid-card">
-                    <i class="fab fa-angular icon"></i>
-                    <span class="job-position"> Angular </span>
-                    <h3 class="work-time"><span><i class="fas fa-hourglass-half"></i></span>1 năm</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam suscipit vitae recusandae sit temporibus hic. Aperiam error
-                        praesentium incidunt cupiditate iusto, soluta quidem, et accusamus necessitatibus, officiis odit voluptatibus fugit.</p>
-                </div>
-            </div>
+    <script>
+        const translations = {
+            vi: {
+                nav_about: "Giới thiệu",
+                nav_packages: "Thư viện",
+                nav_skills: "Kỹ năng",
+                nav_exp: "Kinh nghiệm",
+                hero_sub: "Fullstack Developer",
+                hero_tagline: "Là một Full-Stack Developer với hơn 4 năm kinh nghiệm thực chiến, tôi sở hữu bộ kỹ năng toàn diện từ Backend (.NET Core) đến Frontend (Angular, React). Không chỉ dừng lại ở việc phát triển tính năng, tôi luôn chú trọng tối ưu hóa kiến trúc phần mềm và giải quyết các bài toán vận hành thực tế của doanh nghiệp. Với tư duy quản lý được rèn giũa qua các dự án lớn, mục tiêu của tôi là tận dụng nền tảng kỹ thuật vững chắc để hướng tới vai trò Project Manager chuyên nghiệp, đồng hành cùng sự thành công của đội ngũ và dự án.",
+                title_goal: "Mục tiêu cá nhân",
+                goal_content: "<p>Tôi tập trung xây dựng các hệ thống quản lý sản xuất doanh nghiệp ổn định, hiệu năng cao và có khả năng mở rộng. Thành thạo quy trình phát triển khép kín từ việc thiết kế Database, viết Web API đồng bộ dữ liệu bệnh viện phức tạp, đến tối ưu hóa UI/UX ứng dụng Web.</p><br><p>Khả năng phối hợp làm việc nhóm tốt (từng làm việc trong các dự án quy mô từ 14 - 16 thành viên), quản lý source code chặt chẽ qua Git commits và tự động hóa vận hành.</p>",
+                title_info: "Thông tin cá nhân",
+                info_dob: "Ngày sinh: 19/08/1997",
+                info_gender: "Giới tính: Nam",
+                info_loc: "Phú Thọ, Thủ Dầu Một, Bình Dương",
+                info_edu: "CĐ Công nghệ TP.HCM (IT - 2018)",
+                title_skills: "Kỹ năng công nghệ",
+                title_packages: "Thư viện đã phát hành (NuGet)",
+                sub_packages: "Các gói tiện ích mã nguồn mở được tối ưu hóa cho quá trình phát triển hệ thống .NET:",
+                nuget_1_desc: "Bộ công cụ tích hợp các hàm xử lý logic kỹ thuật hệ thống một cách nhanh chóng.",
+                nuget_2_desc: "Thư viện chuyên dụng hỗ trợ chuyển đổi dữ liệu hiệu năng cao cho ứng dụng C#.",
+                nuget_view: "Xem trên nuget.org →",
+                title_exp: "Kinh nghiệm làm việc",
+                exp_present: "Hiện tại",
+                exp_data: [
+                    {
+                        role: "Full-stack Developer",
+                        company: "Shyang Hung Cheng Industrial Co,. Ltd.",
+                        time: "11/2021 - Hiện tại",
+                        desc: "Xây dựng và phát triển toàn diện hệ thống quản lý sản xuất cốt lõi của tập đoàn (Team size: 16 người):",
+                        bullets: [
+                            "Trực tiếp lập trình trọn gói cả Frontend lẫn Backend, nâng cấp phiên bản hệ thống lớn lên môi trường công nghệ mới tối ưu hơn.",
+                            "Quản lý, tối ưu hóa cơ sở dữ liệu và theo dõi luồng nhánh Source Code nghiêm ngặt qua Git.",
+                            "Các dự án tiêu biểu tham gia vận hành sản xuất: Webleave_v2, Smart tool best line, Warehouse bottom, Machine Transfer V2, Temperature And Humidity Monitor v2..."
+                        ],
+                        tags: ["ASP.NET MVC", "Web API", "Angular", "TypeScript", "RESTful API"]
+                    },
+                    {
+                        role: "Web Developer / Outsourcing",
+                        company: "Vnsogroup & Hệ thống CMS độc lập",
+                        time: "2022 - 2024",
+                        desc: "Phát triển và cấu trúc hệ thống quản lý phân tán:",
+                        bullets: [
+                            "Nghiên cứu, ứng dụng và thuyết trình chia sẻ các thư viện Angular thế hệ mới cùng các Package tối ưu của ASP.NET cho toàn đội ngũ dự án.",
+                            "Xây dựng, bảo trì hệ thống web quản lý sản xuất phân tán và trực tiếp đảm nhiệm việc deploy code mới lên hệ thống Hosting.",
+                            "Hệ thống vận hành thực tế: vnsohome.com, app.vnsohome.com, admin.vnsohome.com, trannguyenloc.com"
+                        ],
+                        tags: ["ASP.NET Core MVC", "Angular.js", "SQL Server", "Git & Deployment"]
+                    },
+                    {
+                        role: "Back-end Developer",
+                        company: "Tekmedi Company",
+                        time: "11/2020 - 03/2021",
+                        desc: "Xây dựng lõi đồng bộ dữ liệu y tế (Team size: 14 người):",
+                        bullets: [
+                            "Thiết kế cấu trúc Web API xử lý các cổng kết nối, phục vụ đồng bộ các luồng dữ liệu thời gian thực (Sync Data) trong hệ thống quản lý bệnh viện thông minh."
+                        ],
+                        tags: ["Web API", "Restful API", "Backend Architecture"]
+                    },
+                    {
+                        role: "Outsourcing Web Developer",
+                        company: "Computing Community and Technology Corporation",
+                        time: "10/2018 - 10/2020",
+                        desc: "Phát triển gia công phần mềm:",
+                        bullets: [
+                            "Gia công, thiết kế và phát triển các ứng dụng nền tảng Web theo các yêu cầu kỹ thuật chi tiết của khách hàng đối tác."
+                        ],
+                        tags: []
+                    }
+                ]
+            },
+            en: {
+                nav_about: "About Me",
+                nav_packages: "Packages",
+                nav_skills: "Skills",
+                nav_exp: "Experience",
+                hero_sub: "Fullstack Developer",
+                hero_tagline: "Results-driven Full-Stack Developer with over 4 years of hands-on experience in architecting and delivering robust enterprise software solutions. Highly proficient across the stack, with deep expertise in .NET Core (Backend) and Angular/React (Frontend). Driven by a passion for software design pattern and system optimization, I am actively honing my leadership capabilities. My long-term career goal is to leverage this solid technical foundation to transition into a professional Project Manager, driving successful high-impact projects.",
+                title_goal: "Professional Summary",
+                goal_content: "<p>Focused on architecting highly stable, performant, and scalable enterprise production management systems. Proficient across the entire SDLC, from relational database design and complex medical data synchronization APIs to modern web UI/UX optimization.</p><br><p>Strong team collaboration skills (with proven track record in cross-functional teams of 14-16 members), precise version control using Git, and a strong advocate for automation and code quality.</p>",
+                title_info: "Personal Info",
+                info_dob: "Birthdate: Aug 19, 1997",
+                info_gender: "Gender: Male",
+                info_loc: "Binh Duong Province, Vietnam",
+                info_edu: "HCM City College of Technology (IT - 2018)",
+                title_skills: "Technical Stack",
+                title_packages: "Published Packages (NuGet)",
+                sub_packages: "Open-source utility libraries optimized for .NET system development and data manipulation:",
+                nuget_1_desc: "A collection of integrated utility functions designed to accelerate core back-end engineering logic.",
+                nuget_2_desc: "High-performance data conversion and parsing extensions built tailored for C# applications.",
+                nuget_view: "View on nuget.org →",
+                title_exp: "Work Experience",
+                exp_present: "Present",
+                exp_data: [
+                    {
+                        role: "Full-stack Developer",
+                        company: "Shyang Hung Cheng Industrial Co,. Ltd.",
+                        time: "11/2021 - Present",
+                        desc: "Engineered and enhanced the corporation's core manufacturing execution system (Team size: 16):",
+                        bullets: [
+                            "Owned end-to-end fullstack development, successfully modernizing legacy web modules into cutting-edge architecture.",
+                            "Administered large-scale database optimization and implemented rigid Git flow branch management strategies.",
+                            "Key active products delivered: Webleave_v2, Smart tool best line, Warehouse bottom, Machine Transfer V2, Temperature And Humidity Monitor v2."
+                        ],
+                        tags: ["ASP.NET MVC", "Web API", "Angular", "TypeScript", "RESTful API"]
+                    },
+                    {
+                        role: "Web Developer / Outsourcing",
+                        company: "Vnsogroup & CMS Independent Systems",
+                        time: "2022 - 2024",
+                        desc: "Developed distributed web applications and CMS structures:",
+                        bullets: [
+                            "Researched and integrated modern Angular ecosystem updates and advanced ASP.NET packages to boost development velocity.",
+                            "Maintained secure database workflows and directly orchestrated standard code deployment pipelines onto host servers.",
+                            "Live production apps: vnsohome.com, app.vnsohome.com, admin.vnsohome.com, trannguyenloc.com"
+                        ],
+                        tags: ["ASP.NET Core MVC", "Angular.js", "SQL Server", "Git & Deployment"]
+                    },
+                    {
+                        role: "Back-end Developer",
+                        company: "Tekmedi Company",
+                        time: "11/2020 - 03/2021",
+                        desc: "Architected real-time hospital integration syncing (Team size: 14):",
+                        bullets: [
+                            "Designed high-throughput Web APIs executing complex data orchestration for real-time synchronization inside smart healthcare platforms."
+                        ],
+                        tags: ["Web API", "Restful API", "Backend Architecture"]
+                    },
+                    {
+                        role: "Outsourcing Web Developer",
+                        company: "Computing Community and Technology Corporation",
+                        time: "10/2018 - 10/2020",
+                        desc: "Software outsourcing fulfillment:",
+                        bullets: [
+                            "Customized, designed, and developed dynamic web applications strictly satisfying strict client technical criteria."
+                        ],
+                        tags: []
+                    }
+                ]
+            }
+        };
 
-            <img
-                src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXZhdGFyfGVufDB8fDB8fHww">
+        function switchLang(lang) {
+            // 1. Cập nhật trạng thái Active trên nút bấm Switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === lang) btn.classList.add('active');
+            });
 
-        </div>
-    </section>
-    <!-- End Experience -->
+            // 2. Dịch các text tĩnh thông thường qua thẻ attribute data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
 
-    <!-- Projects -->
-    <section class="projects" id="projects">
-        <h2 class="title">
-            Dự án
-        </h2>
+            // 3. Cập nhật các tiêu đề đặc biệt đi kèm icon tránh mất Icon Fa
+            document.getElementById('title-goal').innerHTML = `<i class="fas fa-user-code"></i> ${translations[lang].title_goal}`;
+            document.getElementById('title-info').innerHTML = `<i class="fas fa-address-card"></i> ${translations[lang].title_info}`;
+            document.getElementById('title-skills').innerHTML = `<i class="fas fa-cubes"></i> ${translations[lang].title_skills}`;
+            document.getElementById('title-packages').innerHTML = `<i class="fas fa-box-open"></i> ${translations[lang].title_packages}`;
+            document.getElementById('sub-packages').innerHTML = translations[lang].sub_packages;
+            document.getElementById('title-exp').innerHTML = `<i class="fas fa-briefcase"></i> ${translations[lang].title_exp}`;
 
-        <div class="projects-grid">
-            <div class="project-card">
-                <img
-                    src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvamVjdCUyMHdlYnNpdGV8ZW58MHx8MHx8fDA%3D">
+            // 4. Render danh sách Kinh nghiệm làm việc động (Do phần này có mảng & badge)
+            const expContainer = document.getElementById('exp-list-container');
+            expContainer.innerHTML = ''; // Clear dữ liệu cũ
 
-                <h3>Technical Managerment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ab minus dolorum dolore ut explicabo et quaerat itaque </p>
-                <div class="btn-group">
-                    <div class="btn">Live Demo</div>
+            translations[lang].exp_data.forEach(item => {
+                let bulletsHtml = item.bullets.map(b => `<li>${b}</li>`).join('');
+                let tagsHtml = item.tags.map(t => `<span class="tech-badge">${t}</span>`).join('');
 
-                    <div class="btn">Github repo</div>
-                </div>
-            </div>
-            <div class="project-card">
-                <img
-                    src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHByb2plY3QlMjB3ZWJzaXRlfGVufDB8fDB8fHww">
+                let expItemHtml = `
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div class="exp-title">
+                                <h3>${item.role}</h3>
+                                <div class="company">${item.company}</div>
+                            </div>
+                            <span class="exp-time">${item.time}</span>
+                        </div>
+                        <div class="exp-body">
+                            <p>${item.desc}</p>
+                            <ul>${bulletsHtml}</ul>
+                            <div class="tech-badges">${tagsHtml}</div>
+                        </div>
+                    </div>
+                `;
+                expContainer.innerHTML += expItemHtml;
+            });
 
-                <h3>Technical Managerment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ab minus dolorum dolore ut explicabo et quaerat itaque </p>
-                <div class="btn-group">
-                    <div class="btn">Live Demo</div>
+            // Lưu cài đặt ngôn ngữ của người dùng vào LocalStorage để lần sau họ vào không bị reset
+            localStorage.setItem('preferred_lang', lang);
+        }
 
-                    <div class="btn">Github repo</div>
-                </div>
-            </div>
-            <div class="project-card">
-                <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2plY3QlMjB3ZWJzaXRlfGVufDB8fDB8fHww">
-
-                <h3>Technical Managerment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ab minus dolorum dolore ut explicabo et quaerat itaque </p>
-                <div class="btn-group">
-                    <div class="btn">Live Demo</div>
-
-                    <div class="btn">Github repo</div>
-                </div>
-            </div>
-            <div class="project-card">
-                <img
-                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2plY3QlMjB3ZWJzaXRlfGVufDB8fDB8fHww">
-
-                <h3>Technical Managerment</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, ab minus dolorum dolore ut explicabo et quaerat itaque </p>
-                <div class="btn-group">
-                    <div class="btn">Live Demo</div>
-
-                    <div class="btn">Github repo</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Projects -->
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="input-box">
-            <h2 class="title">Liên hệ </h2>
-
-            <div class="form-contact">
-                <input type="text" placeholder="Nhập địa chỉ email của bạn ...">
-                <i class="fas fa-mail-bulk"></i>
-            </div>
-
-            <div class="btn"> Gửi liên hệ </div>
-        </div>
-    </section>
-    <!-- End Contact -->
-
-    <!-- Footer -->
-    <footer>
-        <ul>
-            <li><a href="#introduce"> Giới thiệu </a></li>
-            <li><a href="#experience"> Kinh nghiệm</a></li>
-            <li><a href="#projects">Dự án</a></li>
-            <li><a href="#contact">Liên hệ</a></li>
-        </ul>
-
-        <div class="copy-right">
-            &copy; All rights reserved | Developer Ben
-        </div>
-    </footer>
-    <!-- End Footer -->
-
-
-    <script src="./js/Portfolio/script.js"></script>
+        // Tự động kích hoạt ngôn ngữ đã chọn khi tải trang (Mặc định ban đầu là tiếng Việt)
+        window.onload = () => {
+            const savedLang = localStorage.getItem('preferred_lang') || 'vi';
+            switchLang(savedLang);
+        };
+    </script>
 </body>
 
 </html>
